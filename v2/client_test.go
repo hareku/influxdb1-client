@@ -1,7 +1,6 @@
 package client
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -307,8 +306,14 @@ func TestClient_ChunkedQuery(t *testing.T) {
 		w.Header().Set("X-Influxdb-Version", "1.3.1")
 		w.WriteHeader(http.StatusOK)
 		enc := json.NewEncoder(w)
-		_ = enc.Encode(data)
-		_ = enc.Encode(data)
+		err := enc.Encode(data)
+		if err != nil {
+			t.Fatal(err)
+		}
+		err = enc.Encode(data)
+		if err != nil {
+			t.Fatal(err)
+		}
 	}))
 	defer ts.Close()
 
