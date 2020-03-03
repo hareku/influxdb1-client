@@ -4,7 +4,6 @@ package client // import "github.com/aptpod/influxdb1-client/v2"
 import (
 	"bytes"
 	"crypto/tls"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -18,6 +17,7 @@ import (
 	"time"
 
 	"github.com/aptpod/influxdb1-client/models"
+	json "github.com/json-iterator/go"
 )
 
 // HTTPConfig is the config data needed to create an HTTP Client.
